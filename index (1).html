@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijay — Full-Stack &amp; AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EEF1F6;
+    --paper-raised: #FFFFFF;
+    --ink: #10151C;
+    --muted: #5B6472;
+    --line: #C7CEDA;
+    --accent: #2A4CFF;
+    --accent-soft: #DDE4FF;
+    --accent-ink: #14245C;
+    --radius: 3px;
+    --serif-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+    --sans: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --paper: #12151C;
+      --paper-raised: #1A1E27;
+      --ink: #EDEFF4;
+      --muted: #9198A8;
+      --line: #2E3444;
+      --accent: #6C8CFF;
+      --accent-soft: #212A47;
+      --accent-ink: #C6D2FF;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12151C;
+    --paper-raised: #1A1E27;
+    --ink: #EDEFF4;
+    --muted: #9198A8;
+    --line: #2E3444;
+    --accent: #6C8CFF;
+    --accent-soft: #212A47;
+    --accent-ink: #C6D2FF;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+  .overflow-x { overflow-x: auto; }
+
+  /* ---------- Header ---------- */
+  header.top {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+  .logo .dot { color: var(--accent); }
+  nav.top-nav { display: flex; gap: 28px; font-size: 14px; }
+  nav.top-nav a { text-decoration: none; color: var(--muted); }
+  nav.top-nav a:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 84px 0 64px; }
+  .hero .status-line {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .hero h1 {
+    font-family: var(--serif-display);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    margin: 0 0 22px;
+    max-width: 16ch;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lede {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 56ch;
+    margin: 0 0 34px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 14.5px;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary { border-color: var(--line); color: var(--ink); }
+
+  /* stat strip */
+  .stat-strip {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line);
+  }
+  .stat {
+    padding: 22px 20px 0;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child { border-right: none; }
+  .stat .num {
+    font-family: var(--serif-display);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .stat .label {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* ---------- Section heading ---------- */
+  .section { padding: 76px 0; border-top: 1px solid var(--line); }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 44px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .section-head h2 {
+    font-family: var(--serif-display);
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .section-head .sub { color: var(--muted); font-size: 14.5px; max-width: 42ch; }
+
+  /* ---------- Build log (project list) ---------- */
+  .log { position: relative; }
+  .log::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--line);
+  }
+  .entry {
+    position: relative;
+    padding: 0 0 48px 40px;
+  }
+  .entry:last-child { padding-bottom: 0; }
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+  }
+  .entry.flagship::before { background: var(--accent); }
+  .entry-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .entry h3 {
+    font-family: var(--serif-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .entry h3 a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .entry h3 a:hover { border-color: var(--accent); color: var(--accent); }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+  .tag-live { background: var(--accent-soft); color: var(--accent-ink); }
+  .tag-shipped { background: var(--paper-raised); color: var(--muted); border: 1px solid var(--line); }
+  .tag-research { background: var(--paper-raised); color: var(--muted); border: 1px dashed var(--line); }
+  .entry p.desc { margin: 0 0 14px; color: var(--muted); max-width: 66ch; font-size: 15px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink);
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+    border-radius: var(--radius);
+  }
+
+  /* ---------- Experiments grid ---------- */
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .exp {
+    background: var(--paper-raised);
+    padding: 22px;
+  }
+  .exp h4 {
+    font-family: var(--serif-display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .exp p { margin: 0; color: var(--muted); font-size: 13.8px; }
+
+  /* ---------- Skills ---------- */
+  .skill-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .skill-group h4 {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 400;
+    margin: 0 0 12px;
+    text-transform: lowercase;
+  }
+  .skill-group .stack { margin-top: 0; }
+
+  /* ---------- Contact ---------- */
+  .contact-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .contact-block h2 {
+    font-family: var(--serif-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 600;
+    margin: 0 0 14px;
+    max-width: 14ch;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .contact-links a {
+    font-family: var(--mono);
+    font-size: 15px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+  }
+  .contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 26px 0 40px;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: var(--mono);
+  }
+
+  @media (max-width: 720px) {
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .skill-groups { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr; }
+    nav.top-nav { display: none; }
+    .contact-block { flex-direction: column; align-items: flex-start; }
+    .contact-links { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo">vijay<span class="dot">.</span>dev</div>
+    <nav class="top-nav">
+      <a href="#work">Work</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="status-line"><span class="status-dot"></span>Available for freelance &amp; contract work</div>
+    <h1>Full-stack &amp; AI engineer who ships to production, not just to a repo.</h1>
+    <p class="lede">I build and deploy real products — a live SaaS with paying users, a streaming platform running in production, an AI bot serving a real business. Final-year CS student based in Pune, working with founders and small teams on MERN and applied AI.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work">See the work</a>
+      <a class="btn btn-secondary" href="#contact">Get in touch</a>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat"><div class="num">15+</div><div class="label">shipped projects</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">in production today</div></div>
+      <div class="stat"><div class="num">2</div><div class="label">freelance clients served</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">research paper published</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Work</h2>
+      <div class="sub">Products built end-to-end — architecture, deployment, and the unglamorous parts in between.</div>
+    </div>
+
+    <div class="log">
+
+      <div class="entry flagship">
+        <div class="entry-top">
+          <h3><a href="https://loopdraw.app" target="_blank" rel="noopener">LoopDraw</a></h3>
+          <span class="tag tag-live">live · paying users</span>
+        </div>
+        <p class="desc">A browser-based PDF editor SaaS, built solo from idea to paying customers. Free client-side tools, paid server-side features like PDF↔Word conversion. Handled everything: auth, billing, hosting, SEO, and the product decisions in between.</p>
+        <div class="stack">
+          <span class="chip">React</span><span class="chip">Vite</span><span class="chip">Zustand</span>
+          <span class="chip">Tailwind</span><span class="chip">FastAPI</span><span class="chip">MongoDB</span>
+          <span class="chip">AWS EC2</span><span class="chip">Google OAuth</span>
+        </div>
+      </div>
+
+      <div class="entry flagship">
+        <div class="entry-top">
+          <h3><a href="https://cinevie.in" target="_blank" rel="noopener">Cinevie</a></h3>
+          <span class="tag tag-live">live · production client</span>
+        </div>
+        <p class="desc">A production OTT streaming platform. Built adaptive HLS streaming, PWA support, SEO-friendly share previews for social crawlers, dual-orientation thumbnails, and deliverability-hardened email — the kind of detail work that separates a demo from a real product.</p>
+        <div class="stack">
+          <span class="chip">React Native / Expo</span><span class="chip">Node.js</span><span class="chip">MongoDB</span>
+          <span class="chip">PostgreSQL</span><span class="chip">Bunny CDN</span><span class="chip">Firebase Auth</span>
+          <span class="chip">Nginx / PM2</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <h3>MD Tours WhatsApp AI Bot</h3>
+          <span class="tag tag-live">live · production client</span>
+        </div>
+        <p class="desc">A multilingual AI booking assistant for a Pune travel agency, live on WhatsApp today. Understands English, Hindi, Marathi and Hinglish, and hands off to a human when the conversation needs one.</p>
+        <div class="stack">
+          <span class="chip">Node.js / Express</span><span class="chip">Gemini API</span><span class="chip">MySQL</span>
+          <span class="chip">WhatsApp Cloud API</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <h3>NexChat</h3>
+          <span class="tag tag-shipped">shipped</span>
+        </div>
+        <p class="desc">Real-time chat with WebRTC audio/video calling, built on the MERN stack with Socket.IO. Tracked down and fixed a race-condition bug that only showed up as a black call screen under specific network timing.</p>
+        <div class="stack">
+          <span class="chip">MongoDB</span><span class="chip">Express</span><span class="chip">React</span>
+          <span class="chip">Node.js</span><span class="chip">Socket.IO</span><span class="chip">WebRTC</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <h3>EchoMind</h3>
+          <span class="tag tag-shipped">published research</span>
+        </div>
+        <p class="desc">An AI voice journaling app pairing browser speech recognition with keyword sentiment analysis and GPT-4o-mini. Wrote up the approach as a research paper, citing 76.7% emotion detection accuracy.</p>
+        <div class="stack">
+          <span class="chip">Web Speech API</span><span class="chip">Whisper</span><span class="chip">GPT-4o-mini</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <h3>InfraConnect Enterprises</h3>
+          <span class="tag tag-shipped">freelance client</span>
+        </div>
+        <p class="desc">A corporate website built as a freelance engagement — static SPA with a 12-country interactive map and a working contact pipeline, deployed on Cloudflare.</p>
+        <div class="stack">
+          <span class="chip">HTML/CSS/JS</span><span class="chip">Leaflet.js</span><span class="chip">Formspree</span><span class="chip">Cloudflare</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experiments">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Research &amp; experiments</h2>
+      <div class="sub">Smaller, sharper projects — mostly applied ML, built to learn a technique properly rather than to ship.</div>
+    </div>
+    <div class="exp-grid overflow-x">
+      <div class="exp">
+        <h4>TruthLens / FakeShield</h4>
+        <p>Food-refund fraud detection combining a HuggingFace classifier, EXIF forensics, and Gemini Vision — built for a hackathon with a full pitch deck.</p>
+      </div>
+      <div class="exp">
+        <h4>Offroad Terrain Segmentation</h4>
+        <p>A custom Attention U-Net trained from scratch (no pretrained weights) for 6-class terrain segmentation, deployed via FastAPI + React.</p>
+      </div>
+      <div class="exp">
+        <h4>CP-VTON Virtual Try-On</h4>
+        <p>A two-stage deep learning pipeline — cloth warping network plus try-on network — trained on Kaggle GPU with VGG perceptual and SSIM loss.</p>
+      </div>
+      <div class="exp">
+        <h4>MusicGen Fine-Tuning</h4>
+        <p>LoRA/PEFT fine-tuning of Meta's MusicGen-small on a personal dataset, working through EnCodec token-based training end to end.</p>
+      </div>
+      <div class="exp">
+        <h4>Resume Where You Left Off</h4>
+        <p>A VS Code extension that captures your coding context — open files, cursor position, git diffs — and restores it in one click, with AI-generated session docs.</p>
+      </div>
+      <div class="exp">
+        <h4>3D Portfolio Concepts</h4>
+        <p>Three experimental portfolio builds in React Three Fiber — a scroll-driven ocean dive, a draggable-furniture room, and a train-through-stations narrative.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <div class="sub">What I reach for day to day, and what I'm actively building depth in.</div>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>core stack</h4>
+        <div class="stack">
+          <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span>
+          <span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">React Native</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>applied AI</h4>
+        <div class="stack">
+          <span class="chip">FastAPI</span><span class="chip">PyTorch</span><span class="chip">HuggingFace</span>
+          <span class="chip">OpenAI / Gemini APIs</span><span class="chip">LangChain</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>infra &amp; ops</h4>
+        <div class="stack">
+          <span class="chip">AWS EC2</span><span class="chip">Nginx</span><span class="chip">PM2</span>
+          <span class="chip">Redis</span><span class="chip">Docker (learning)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-block">
+      <h2>Have a project in mind?</h2>
+      <div class="contact-links">
+        <a href="mailto:work.vijaysuryawanshi@gmail.com">work.vijaysuryawanshi@gmail.com</a>
+        <a href="https://github.com/Vijay00891" target="_blank" rel="noopener">github.com/Vijay00891</a>
+        <a href="https://www.linkedin.com/in/vijay-suryawanshi-586931290/" target="_blank" rel="noopener">linkedin.com/in/vijay-suryawanshi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Built and deployed by Vijay · Pune, India</div>
+</footer>
+
+</body>
+</html>
